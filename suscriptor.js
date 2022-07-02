@@ -21,6 +21,9 @@ cliente.on('connect', ()=>{
 cliente.on('message', (topic, payload)=>{
     console.log("El topic es " , topic, " el mensaje es " , payload.toString());
 
+    /**
+     * Guardar en la BD
+     */
     mongoC.connect(uriMongo, (error, client) =>{
         const myColection = client.db('mqttJs').collection('mqttJs');
         myColection.insertOne({
